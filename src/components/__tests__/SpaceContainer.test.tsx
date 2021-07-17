@@ -23,4 +23,18 @@ describe('space container render properly', () => {
         const spaceInstance = getByTestId('SpaceContainer')
         expect(spaceInstance.props.style.backgroundColor).toBe('#000')
     })
+    
+    describe('renders correct identifier', () => {
+        
+        it('renders correct identifier, 0', () => {
+            const {getByText} = render(<SpaceContainer index={0} spaceWidth={50}/>)
+            const identifierIndex = getByText('A1')
+            expect(identifierIndex).not.toBeUndefined()
+        })
+        it('renders correct identifier', () => {
+            const {getByText} = render(<SpaceContainer index={1} spaceWidth={50}/>)
+            const identifierIndex = getByText('A2')
+            expect(identifierIndex).not.toBeUndefined()
+        })
+    })
 })
