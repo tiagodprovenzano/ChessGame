@@ -14,7 +14,7 @@ export class Tile {
   constructor(
     type: ITileType,
     userTile: boolean = true,
-    initial: boolean = true,
+    defaultPosition: boolean = true,
     position?: IPositions
   ) {
     if (!Tile.validTypes.includes(type)) {
@@ -26,7 +26,7 @@ export class Tile {
     
     this.type = type;
     this.userTile = userTile;
-    if (initial) {
+    if (defaultPosition) {
         this.position = this.getInitialPosition()
     }else{
         if(position){

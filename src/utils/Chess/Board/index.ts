@@ -1,3 +1,4 @@
+import { Tile } from '../Tiles';
 import { initialBoardState } from './static/initialBoardState';
 import { validPositions } from './static/validPositions';
 import { IBoardState } from './types/IBoardState';
@@ -13,6 +14,7 @@ export class Board {
   ){
     this._userTileColor = userTileColor
     this._boardState = boardState
+    this.getTilesInstances()
   }
 
   public get userTileColor(){
@@ -21,5 +23,16 @@ export class Board {
 
   public get boardState(){
     return this._boardState
+  }
+
+  private getTilesInstances = () => {
+    this._boardState = this._boardState.map((state) => {
+      const {tileType, userTile, position} = state
+      let tile;
+      if(tileType){
+        tile = new Tile(tileType, userTile, false, position)
+      }
+      return {tile, tileType, userTile, position}
+    })
   }
 }

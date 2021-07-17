@@ -1,5 +1,4 @@
 import { Board } from '../'
-import { initialBoardState } from '../static/initialBoardState'
 
 describe('Testing chess Board class', () => {
     describe('When calling empty constructor, start a game with user as white tiles', () => {
@@ -11,7 +10,8 @@ describe('Testing chess Board class', () => {
         it('empty constructor start game with initialPositions as state', () => {
             const board = new Board()
             expect(Array.isArray(board.boardState)).toBe(true)
-            expect(board.boardState).toEqual(initialBoardState)
+            expect(board.boardState.find((a) => a.tileType==="Q" && a.userTile)?.position).toBe("D1")
+            expect(board.boardState.find((a) => a.position==="A5")?.userTile).toBeUndefined()
         })
     })
 })
