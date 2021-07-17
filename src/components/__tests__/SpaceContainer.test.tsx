@@ -37,4 +37,12 @@ describe('space container render properly', () => {
             expect(identifierIndex).not.toBeUndefined()
         })
     })
+    
+    describe('expect to have tile view' , () => {
+        it('renders a tile view', () => {
+            const {getByTestId} = render(<SpaceContainer index={1} spaceWidth={50}/>)
+            const tileView = getByTestId('TileView')
+            expect(tileView).not.toBeUndefined()
+        })
+    })
 })
