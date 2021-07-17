@@ -10,10 +10,6 @@ export const SpaceContainer: React.FC<{ index: number; spaceWidth: number; }> = 
     const [color] = useState<string>(colorSelector(index))
     const [identifier] = useState<string>(getIndexIdentifier(index) + '')
 
-    // useEffect(() => {
-    //     setColor(colorSelector(index))
-    // }, [])
-    
     return (
         <View
             key={identifier} 
@@ -27,7 +23,7 @@ export const SpaceContainer: React.FC<{ index: number; spaceWidth: number; }> = 
                 justifyContent: 'center' 
             }} 
         >
-            <Text testID={'SpaceIdentifierLabel'} style={{color: color === '#000'? '#fff': '#000'}}>{identifier}</Text>
+            <Text testID={'SpaceIdentifierLabel'} style={{display: 'none', color: color === '#000'? '#fff': '#000'}}>{identifier}</Text>
             <Tile />
         </View>
     );
