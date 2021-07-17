@@ -1,10 +1,10 @@
-import { Tile } from '../Tiles';
+import Tile from '../Tiles';
 import { initialBoardState } from './static/initialBoardState';
 import { validPositions } from './static/validPositions';
 import { IBoardState } from './types/IBoardState';
 import {IPositions} from './types/IPositons';
 
-export class Board {
+export default class Board {
   static validPositions: IPositions[] = validPositions;
   private _userTileColor: 'white' | 'black'
   private _boardState: IBoardState

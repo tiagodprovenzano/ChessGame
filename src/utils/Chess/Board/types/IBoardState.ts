@@ -1,4 +1,4 @@
-import { Tile } from "../../Tiles";
+import Tile from "../../Tiles";
 import { ITileType } from "../../Tiles/types/ITileType";
 import { IPositions } from "./IPositons";
 

@@ -1,4 +1,4 @@
-import {Tile} from '..';
+import Tile from '..';
 import {ITileType} from '../types/ITileType';
 
 describe('Testing Tile Class', () => {

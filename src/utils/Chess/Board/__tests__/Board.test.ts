@@ -1,4 +1,7 @@
-import { Board } from '../'
+import Board from '../'
+import Tiles from '../../Tiles'
+
+jest.mock('../../Tiles')
 
 describe('Testing chess Board class', () => {
     describe('When calling empty constructor, start a game with user as white tiles', () => {
@@ -13,5 +16,9 @@ describe('Testing chess Board class', () => {
             expect(board.boardState.find((a) => a.tileType==="Q" && a.userTile)?.position).toBe("D1")
             expect(board.boardState.find((a) => a.position==="A5")?.userTile).toBeUndefined()
         })
+    })
+    describe('tiles constructor should be called', () => {
+        const board = new Board()
+        expect(Tiles).toHaveBeenCalled()
     })
 })

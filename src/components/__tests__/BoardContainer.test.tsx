@@ -2,6 +2,8 @@ import React from 'react'
 import {render, fireEvent} from '@testing-library/react-native'
 import { BoardContainer } from '../BoardContainer'
 import * as rsz from '../library/resizePressedCallback'
+import Chess from '../../utils/Chess'
+jest.mock('../../utils/Chess')
 // import * as spc from '../library/spaceLayoutCallback'
 
 describe('BoardContainer should render properly', () => {
@@ -33,4 +35,8 @@ describe('BoardContainer should render properly', () => {
         expect(rszFn).toHaveBeenCalledTimes(1)
         // expect(spcCallback).toHaveBeenCalledTimes(64)
     })
+
+    // it('shold call Chess class newGame method in case there is no a', () => {
+    //     expect(Chess).toHaveBeenCalled()
+    // })
 })    

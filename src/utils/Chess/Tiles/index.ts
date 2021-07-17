@@ -4,7 +4,7 @@ import {validTypes} from './static/validTypes';
 import {IInitialPositions} from './types/IInitialPositions';
 import {ITileType} from './types/ITileType';
 
-export class Tile {
+export default class Tile {
   private type: ITileType;
   private userTile: boolean;
   private position: IPositions;
