@@ -35,4 +35,8 @@ export default class Board {
       return {tile, tileType, userTile, position}
     })
   }
+
+  getPositionState = (position: IPositions) => {
+    return this._boardState.find(a => a.position === position)
+  }
 }

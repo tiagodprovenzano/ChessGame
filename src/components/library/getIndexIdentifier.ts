@@ -1,3 +1,4 @@
+import { IPositions } from "../../utils/Chess/Board/types/IPositons";
 
 const columns: Record<number, string> = {
     0: 'A',
@@ -10,8 +11,8 @@ const columns: Record<number, string> = {
     7: 'H'
 }
 
-export const getIndexIdentifier = (index: number) => {
+export const getIndexIdentifier = (index: number): IPositions => {
     const row = 8 - (index % 8)
     const column = columns[Math.floor(index / 8)];
-    return `${column}${row}`;
+    return `${column}${row}` as IPositions;
 };
