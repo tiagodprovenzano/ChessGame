@@ -32,7 +32,6 @@ export class Tile {
         if(position){
             this.position = position
         } else{
-            console.log(position)
             throw new Error('If not initial a valid position should be sent');
         }
     }
