@@ -28,12 +28,12 @@ describe('space container render properly', () => {
         
         it('renders correct identifier, 0', () => {
             const {getByText} = render(<SpaceContainer index={0} spaceWidth={50}/>)
-            const identifierIndex = getByText('A1')
+            const identifierIndex = getByText('A8')
             expect(identifierIndex).not.toBeUndefined()
         })
         it('renders correct identifier', () => {
             const {getByText} = render(<SpaceContainer index={1} spaceWidth={50}/>)
-            const identifierIndex = getByText('A2')
+            const identifierIndex = getByText('A7')
             expect(identifierIndex).not.toBeUndefined()
         })
     })
