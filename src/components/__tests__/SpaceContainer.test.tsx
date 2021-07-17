@@ -10,7 +10,17 @@ describe('space container render properly', () => {
         const spaceInstance = getByTestId('SpaceContainer')
         expect(spaceInstance.props.style.width).toBe(50)
         expect(spaceInstance.props.style.height).toBe(50)
-        expect(spaceInstance.props.style.backgroundColor).toBe('#fff')
         expect(spcCallback).toHaveBeenCalled()
+    })
+    
+    it('renders with correct white color', () => {
+        const {getByTestId} = render(<SpaceContainer index={0} spaceWidth={50}/>)
+        const spaceInstance = getByTestId('SpaceContainer')
+        expect(spaceInstance.props.style.backgroundColor).toBe('#fff')
+    })
+    it('renders with correct black color', () => {
+        const {getByTestId} = render(<SpaceContainer index={1} spaceWidth={50}/>)
+        const spaceInstance = getByTestId('SpaceContainer')
+        expect(spaceInstance.props.style.backgroundColor).toBe('#000')
     })
 })

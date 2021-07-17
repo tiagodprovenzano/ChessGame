@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Dimensions, View } from "react-native";
+import { Dimensions, View, ScrollView, TouchableOpacity, Text } from "react-native";
 import { ResizeButton } from "./ResizeButton";
 import { SpaceContainer } from "./SpaceContainer";
 
@@ -11,13 +11,19 @@ export const BoardContainer: React.FC = () => {
     useEffect(() => {
         setSpaceWidth(width/8)
     }, [width, setSpaceWidth])
-
+    
     return (
-        <View>
-            <View testID={'BoardContainer'} style={{ width, height: width, flexWrap: 'wrap' }}>
-                {spaces.map((_, index) => <SpaceContainer key={index} index={index} spaceWidth={spaceWidth}/>)} 
+        <View style={{flex:1}}>
+            <ScrollView style={{maxHeight: Dimensions.get('window').width}} showsHorizontalScrollIndicator={true}>
+                <ScrollView horizontal>
+                    <View testID={'BoardContainer'} style={{ width, height: width, flexWrap: 'wrap' }}>
+                        {spaces.map((_, index) => <SpaceContainer key={index} index={index} spaceWidth={spaceWidth}/>)} 
+                    </View>
+                </ScrollView>
+            </ScrollView>
+            <View style={{alignSelf: 'stretch', maxHeight: 100, flex:1}}>
+                <ResizeButton setWidth={setWidth} width={width} />
             </View>
-            <ResizeButton setWidth={setWidth} />
         </View>
     )
 }
