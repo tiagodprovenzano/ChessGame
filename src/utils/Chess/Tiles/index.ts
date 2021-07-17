@@ -5,9 +5,9 @@ import {IInitialPositions} from './types/IInitialPositions';
 import {ITileType} from './types/ITileType';
 
 export class Tile {
-  type: ITileType;
-  userTile: boolean;
-  position: IPositions;
+  private type: ITileType;
+  private userTile: boolean;
+  private position: IPositions;
 
   static validTypes: ITileType[] = validTypes;
   private static initialPositions: IInitialPositions = initialPositions;
@@ -15,6 +15,7 @@ export class Tile {
     type: ITileType,
     userTile: boolean = true,
     initial: boolean = true,
+    position?: IPositions
   ) {
     if (!Tile.validTypes.includes(type)) {
       throw new Error('Invalid tile type');
@@ -22,11 +23,18 @@ export class Tile {
     if (typeof userTile !== 'boolean') {
       throw new Error('UserTile should be a boolean');
     }
-
+    
     this.type = type;
     this.userTile = userTile;
     if (initial) {
         this.position = this.getInitialPosition()
+    }else{
+        if(position){
+            this.position = position
+        } else{
+            console.log(position)
+            throw new Error('If not initial a valid position should be sent');
+        }
     }
   }
 
@@ -42,4 +50,10 @@ export class Tile {
       return tileInitialPosition.AI;
     }
   };
+
+  getPosition = () => this.position
+
+  getType = () => this.type
+
+  getIsUserTile = () => this.userTile
 }
