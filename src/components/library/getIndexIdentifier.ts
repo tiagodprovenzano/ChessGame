@@ -11,7 +11,7 @@ const columns: Record<number, string> = {
 }
 
 export const getIndexIdentifier = (index: number) => {
-    const row = index % 8 + 1
+    const row = 8 - (index % 8)
     const column = columns[Math.floor(index / 8)];
     return `${column}${row}`;
 };
