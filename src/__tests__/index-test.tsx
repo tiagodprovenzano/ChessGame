@@ -5,6 +5,11 @@ const testRenderer = TestRederer.create(<ChessableBoard />)
 const testInstance = testRenderer.root
 const boardContainerArray = testInstance.findAll((n: any) => n.props.testID === 'BoardContainer' && n.type === 'View')
 const boardContainer = testInstance.find((n: any) => n.props.testID === 'BoardContainer' && n.type === 'View')
+const spaceContainer = testInstance.findAll((n: any) => n.props.testID === 'SpaceContainer' && n.type === 'View')[0]
+
+afterAll(() => {
+    testRenderer.unmount()
+})
 
 it('renders exactly one container', () => {
 
@@ -12,6 +17,13 @@ it('renders exactly one container', () => {
 })
 it('boardContainer should be a square', () => {
     
-    console.log(boardContainer.props.style.width, boardContainer.props.style.height)
     expect(boardContainer.props.style.width).toBe(boardContainer.props.style.height)
+})
+it('spaceContainer should be a square', () => {
+    
+    expect(spaceContainer.props.style.width).toBe(spaceContainer.props.style.height)
+})
+it('spaceContainer width should be 1/8 of boardCOntainer', () => {
+    
+    expect(spaceContainer.props.style.width).toBe(boardContainer.props.style.width / 8)
 })
