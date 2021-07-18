@@ -30,6 +30,10 @@ export default class Chess {
         this._board.setSelectedTile(position, tileType)
     }
 
+    moveTo = (position: IPositions) => {
+        this._board.moveTo(position)
+    }
+
     subscribe(action: IChessSubscriptions, callback: (value: any) => void){
         this._board.subscribe(action, callback)
     }

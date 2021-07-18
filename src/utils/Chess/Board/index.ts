@@ -77,4 +77,28 @@ export default class Board {
   subscribe(action: IChessSubscriptions, callback: (value: any) => void){
     this._subscriptions[action].push(callback);
   }
+
+  updateTilePosition(newPosition: IPositions, oldPosition: IPositions){
+    const oldPositionState = this._boardState.find((a) => a.position === oldPosition);
+    if(oldPositionState){
+      const {tileType, userTile} = oldPositionState
+      if(tileType){
+        const tile = new Tile(tileType, userTile, false, newPosition)
+        this._boardState = this._boardState.filter((a) => a.position !== oldPosition && a.position !==newPosition);
+        this._boardState.push(
+          {position: newPosition, tileType: tileType, userTile, tile},
+          {position: oldPosition}
+        )
+        this._boardState = [...this._boardState]
+        this.triggerSubscriptions('CHANGE_BOARD_STATE')
+      }
+    }
+  }
+  
+  moveTo(position: IPositions){
+    if(this._selectedTile){
+      const oldPosition = this._selectedTile.position;
+      this.updateTilePosition(position, oldPosition);
+    }
+  }
 }

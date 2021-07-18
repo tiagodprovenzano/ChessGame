@@ -4,6 +4,7 @@ import {IPositions} from '../utils/Chess/Board/types/IPositons';
 import Tile from '../utils/Chess/Tiles';
 import {ITileType} from '../utils/Chess/Tiles/types/ITileType';
 import {ChessContext} from '../utils/Context/ChessContext';
+import { useBoardState } from '../utils/hooks/useBoardState';
 import { useChess } from '../utils/hooks/useChess';
 import {getTileImagesSources} from './library/getTileImagesSources';
 
@@ -20,12 +21,15 @@ export const TileContainer: React.FC<Props> = props => {
   const [imageSrc, setImageSrc] = useState<any>();
   const [tileType, setTileType] = useState<ITileType | undefined>()
   const [Chess] = useChess()
-
+  const [boardState] = useBoardState()
   useEffect(() => {
-    const tileType = Chess.getPositionState(position);
-    if (tileType) {
+    const newTileType = Chess.getPositionState(position);
+    if(position === 'A4'){
+      console.log('tileType no a4', newTileType)
+    }
+    if (newTileType) {
       setDisableSpace(true)
-      setTileType(tileType)
+      setTileType(newTileType)
       const isUserTile = Chess.getIsUserTile(position);
       const color =
         Chess.getUserTileColor() === 'black'
@@ -35,10 +39,12 @@ export const TileContainer: React.FC<Props> = props => {
           : isUserTile
           ? 'W'
           : 'B';
-      setImageSrc(getTileImagesSources(tileType, color));
+      setImageSrc(getTileImagesSources(newTileType, color));
       setTileId(`${color}${tileType}`);
+    } else{
+      setTileId(undefined)
     }
-  }, []);
+  }, [boardState]);
 
   const onPress = useCallback(() => {
     if(tileType){
@@ -47,7 +53,7 @@ export const TileContainer: React.FC<Props> = props => {
   }, [tileType]);
 
   return (
-    <TouchableOpacity activeOpacity={1} hitSlop={{bottom:10, top:10, right:10, left:10}} onPress={onPress} testID={'TileView'+tileId}>
+    <TouchableOpacity activeOpacity={1} onPress={onPress} testID={'TileView'+tileId}>
       <Text
         testID={'TileLabel'}
         style={{display: 'none', color: '#000' ? '#fff' : '#000'}}>
