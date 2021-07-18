@@ -8,7 +8,7 @@ describe('testing color selector', () => {
     ];
 
     blackTiles.forEach(index => {
-      expect(colorSelector(index)).toBe('#000');
+      expect(colorSelector(index)).toBe('#769656');
     });
   });
   it('should return white', () => {
@@ -18,7 +18,7 @@ describe('testing color selector', () => {
     ];
 
     whiteTiles.forEach(index => {
-      expect(colorSelector(index)).toBe('#fff');
+      expect(colorSelector(index)).toBe('#eeeed2');
     });
   });
 });

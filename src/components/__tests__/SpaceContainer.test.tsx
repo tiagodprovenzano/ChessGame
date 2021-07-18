@@ -16,12 +16,12 @@ describe('space container render properly', () => {
     it('renders with correct white color', () => {
         const {getByTestId} = render(<SpaceContainer index={0} spaceWidth={50}/>)
         const spaceInstance = getByTestId('SpaceContainer')
-        expect(spaceInstance.props.style.backgroundColor).toBe('#fff')
+        expect(spaceInstance.props.style.backgroundColor).toBe('#eeeed2')
     })
     it('renders with correct black color', () => {
         const {getByTestId} = render(<SpaceContainer index={1} spaceWidth={50}/>)
         const spaceInstance = getByTestId('SpaceContainer')
-        expect(spaceInstance.props.style.backgroundColor).toBe('#000')
+        expect(spaceInstance.props.style.backgroundColor).toBe('#769656')
     })
     
     describe('renders correct identifier', () => {

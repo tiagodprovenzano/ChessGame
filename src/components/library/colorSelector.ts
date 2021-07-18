@@ -5,5 +5,5 @@ export let colorSelector = (index: number) => {
     if (xFactor) {
         indexFrom8++;
     }
-    return (indexFrom8 + 2) % 2 === 0 ? '#fff' : '#000';
+    return (indexFrom8 + 2) % 2 === 0 ? '#eeeed2' : '#769656';
 };
