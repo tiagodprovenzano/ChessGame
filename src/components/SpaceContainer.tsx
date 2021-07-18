@@ -49,6 +49,7 @@ export const SpaceContainer: React.FC<{index: number; spaceWidth: number}> = ({
       </Text>
       {tile && (
         <Image
+          testID={'TileImage' + tile}
           source={whitePawn}
           width={spaceWidth * 0.8}
           resizeMethod={'scale'}

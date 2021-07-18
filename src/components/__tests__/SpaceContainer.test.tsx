@@ -2,6 +2,7 @@ import React from 'react'
 import { render }  from '@testing-library/react-native'
 import { SpaceContainer } from '../SpaceContainer'
 import * as spc from "../library/colorSelector"
+import { ChessableBoard } from '../..'
 
 describe('space container render properly', () => {
     it('renders with correct width and height', () => {
@@ -43,6 +44,19 @@ describe('space container render properly', () => {
             const {getByTestId} = render(<SpaceContainer index={1} spaceWidth={50}/>)
             const tileView = getByTestId('TileView')
             expect(tileView).not.toBeUndefined()
+        })
+        it('renders all tile images', () => {
+            const { getAllByTestId } = render(<ChessableBoard />)
+            const images = getAllByTestId(/^TileImage/)
+            console.log(images[0].props.source)
+            expect(images.length).toBe(32)
+        })
+        describe('renders correct Images', () => {
+            
+            const { getAllByTestId } = render(<ChessableBoard />)
+            const pawns = getAllByTestId(/p$/)
+            expect(pawns.length).toBe(16)
+            expect(pawns[0].props.source.testUri).toMatch(/(blackPawn.png|whitePawn.png)/)
         })
     })
 })
