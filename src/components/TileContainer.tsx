@@ -32,16 +32,17 @@ export const TileContainer: React.FC<Props> = props => {
       setTileType(newTileType)
       const isUserTile = Chess.getIsUserTile(position);
       const color =
-        Chess.getUserTileColor() === 'black'
-          ? isUserTile
-            ? 'B'
-            : 'W'
-          : isUserTile
-          ? 'W'
-          : 'B';
+      Chess.getUserTileColor() === 'black'
+      ? isUserTile
+      ? 'B'
+      : 'W'
+      : isUserTile
+      ? 'W'
+      : 'B';
       setImageSrc(getTileImagesSources(newTileType, color));
       setTileId(`${color}${tileType}`);
     } else{
+      setDisableSpace(false)
       setTileId(undefined)
     }
   }, [boardState]);

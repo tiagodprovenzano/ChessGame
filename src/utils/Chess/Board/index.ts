@@ -90,7 +90,9 @@ export default class Board {
           {position: oldPosition}
         )
         this._boardState = [...this._boardState]
+        this._selectedTile = undefined
         this.triggerSubscriptions('CHANGE_BOARD_STATE')
+        this.triggerSubscriptions('SELECTED_TILE')
       }
     }
   }
