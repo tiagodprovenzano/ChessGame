@@ -1,5 +1,7 @@
 import Tile from '../Tiles';
+import { ITileType } from '../Tiles/types/ITileType';
 import { IChessSubscriptions } from '../types/IChessSubscriptions';
+import { ISelectedTile } from '../types/ISelectedTile';
 import { initialBoardState } from './static/initialBoardState';
 import { validPositions } from './static/validPositions';
 import { IBoardState } from './types/IBoardState';
@@ -9,9 +11,10 @@ export default class Board {
   static validPositions: IPositions[] = validPositions;
   private _userTileColor: 'white' | 'black'
   private _boardState: IBoardState
-
+  private _selectedTile: ISelectedTile | undefined = undefined 
   private _subscriptions: Record<IChessSubscriptions, Array<(value: any) => void>> = {
-    CHANGE_BOARD_STATE: []
+    CHANGE_BOARD_STATE: [],
+    SELECTED_TILE: []
   }
 
   constructor(
@@ -48,10 +51,23 @@ export default class Board {
       case 'CHANGE_BOARD_STATE':
         this._subscriptions.CHANGE_BOARD_STATE.forEach(cb => cb(this._boardState))
         break;
+      case 'SELECTED_TILE':
+        this._subscriptions.SELECTED_TILE.forEach(cb => cb(this._selectedTile))
+        break;
     
       default:
         break;
     }
+  }
+
+  setSelectedTile = (position: IPositions, tileType: ITileType) => {
+    if(!this._selectedTile || this._selectedTile.position !== position){
+      this._selectedTile = {position, tileType}
+    }else{
+      this._selectedTile = undefined
+    }
+    console.log(position, tileType, this._selectedTile)
+    this.triggerSubscriptions('SELECTED_TILE')
   }
 
   getPositionState = (position: IPositions) => {

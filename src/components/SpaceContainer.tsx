@@ -5,6 +5,7 @@ import {colorSelector} from './library/colorSelector';
 import {TileContainer} from './TileContainer';
 import {IPositions} from '../utils/Chess/Board/types/IPositons';
 import { useChess } from '../utils/hooks/useChess';
+import { useSelectedTile } from '../utils/hooks/useSelectedTile';
 
 export const SpaceContainer: React.FC<{index: number; spaceWidth: number}> = ({
   index,
@@ -13,8 +14,8 @@ export const SpaceContainer: React.FC<{index: number; spaceWidth: number}> = ({
   const [color] = useState<string>(colorSelector(index));
   const [identifier] = useState<IPositions>(getIndexIdentifier(index));
   const [disableSpace, setDisableSpace] = useState(false)
-  const [Chess] = useChess()
-  
+  const [selectedTile] = useSelectedTile()
+
   return (
     <TouchableOpacity
       key={identifier}
@@ -28,7 +29,9 @@ export const SpaceContainer: React.FC<{index: number; spaceWidth: number}> = ({
         flex: 0,
         alignItems: 'center',
         justifyContent: 'center',
-        zIndex: 1
+        zIndex: 1,
+        borderWidth: selectedTile?.position === identifier? 3:0,
+        borderColor: selectedTile?.position === identifier? 'yellow':'transparent'
       }}>
       <Text
         testID={'SpaceIdentifierLabel'}

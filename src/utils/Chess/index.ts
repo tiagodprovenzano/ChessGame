@@ -26,6 +26,10 @@ export default class Chess {
         return this._board.userTileColor
     }
 
+    setSelectedTile = (position: IPositions, tileType: ITileType) => {
+        this._board.setSelectedTile(position, tileType)
+    }
+
     subscribe(action: IChessSubscriptions, callback: (value: any) => void){
         this._board.subscribe(action, callback)
     }

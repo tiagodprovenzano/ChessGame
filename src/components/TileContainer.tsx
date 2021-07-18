@@ -18,12 +18,14 @@ export const TileContainer: React.FC<Props> = props => {
   const {spaceWidth, position, setDisableSpace} = props;
   const [tileId, setTileId] = useState<string>();
   const [imageSrc, setImageSrc] = useState<any>();
-  const [Chess, boardState] = useChess()
+  const [tileType, setTileType] = useState<ITileType | undefined>()
+  const [Chess] = useChess()
 
   useEffect(() => {
     const tileType = Chess.getPositionState(position);
     if (tileType) {
       setDisableSpace(true)
+      setTileType(tileType)
       const isUserTile = Chess.getIsUserTile(position);
       const color =
         Chess.getUserTileColor() === 'black'
@@ -39,11 +41,13 @@ export const TileContainer: React.FC<Props> = props => {
   }, []);
 
   const onPress = useCallback(() => {
-    const isUserTile = Chess.getIsUserTile(position);
-  }, [spaceWidth]);
+    if(tileType){
+      Chess.setSelectedTile(position, tileType);
+    }
+  }, [tileType]);
 
   return (
-    <TouchableOpacity onPress={onPress} testID={'TileView'+tileId}>
+    <TouchableOpacity activeOpacity={1} hitSlop={{bottom:10, top:10, right:10, left:10}} onPress={onPress} testID={'TileView'+tileId}>
       <Text
         testID={'TileLabel'}
         style={{display: 'none', color: '#000' ? '#fff' : '#000'}}>
