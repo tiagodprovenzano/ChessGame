@@ -28,6 +28,7 @@ export const SpaceContainer: React.FC<{index: number; spaceWidth: number}> = ({
         flex: 0,
         alignItems: 'center',
         justifyContent: 'center',
+        zIndex: 1
       }}>
       <Text
         testID={'SpaceIdentifierLabel'}
