@@ -7,7 +7,7 @@ export const BoardContainer: React.FC = () => {
     const [width, setWidth] = useState(Dimensions.get('window').width)
     const [spaceWidth, setSpaceWidth] = useState(width/8);
     const [spaces] = useState( new Array(64).fill('a'))
-
+    
     useEffect(() => {
         setSpaceWidth(width/8)
     }, [width, setSpaceWidth])

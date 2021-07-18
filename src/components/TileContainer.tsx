@@ -4,26 +4,26 @@ import {IPositions} from '../utils/Chess/Board/types/IPositons';
 import Tile from '../utils/Chess/Tiles';
 import {ITileType} from '../utils/Chess/Tiles/types/ITileType';
 import {ChessContext} from '../utils/Context/ChessContext';
-import { useChessContext } from '../utils/hooks/useChessContext';
+import { useChess } from '../utils/hooks/useChess';
 import {getTileImagesSources} from './library/getTileImagesSources';
 
 interface Props {
   spaceWidth: number;
   position: IPositions;
+  setDisableSpace: (disable: boolean) => void
   tile?: Tile;
 }
 
 export const TileContainer: React.FC<Props> = props => {
-  const {spaceWidth, position, tile} = props;
+  const {spaceWidth, position, setDisableSpace} = props;
   const [tileId, setTileId] = useState<string>();
   const [imageSrc, setImageSrc] = useState<any>();
-  const [Chess, boardState] = useChessContext()
-
-  console.log('boardState', boardState)
+  const [Chess, boardState] = useChess()
 
   useEffect(() => {
     const tileType = Chess.getPositionState(position);
     if (tileType) {
+      setDisableSpace(true)
       const isUserTile = Chess.getIsUserTile(position);
       const color =
         Chess.getUserTileColor() === 'black'
