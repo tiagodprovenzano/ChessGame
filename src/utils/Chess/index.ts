@@ -12,4 +12,12 @@ export default class Chess {
     getPositionState(position: IPositions): ITileType | undefined{
         return this._board.getPositionState(position)?.tileType
     }
+
+    getIsUserTile(position: IPositions): boolean | undefined{
+        return this._board.getPositionState(position)?.userTile
+    }
+
+    getUserTileColor(): 'black'|'white'{
+        return this._board.userTileColor
+    }
 }

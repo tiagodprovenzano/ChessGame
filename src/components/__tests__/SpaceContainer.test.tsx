@@ -54,9 +54,54 @@ describe('space container render properly', () => {
         describe('renders correct Images', () => {
             
             const { getAllByTestId } = render(<ChessableBoard />)
-            const pawns = getAllByTestId(/p$/)
-            expect(pawns.length).toBe(16)
-            expect(pawns[0].props.source.testUri).toMatch(/(blackPawn.png|whitePawn.png)/)
+            const blackpawns = getAllByTestId(/B[\w]{1,}p$/)
+            const whitepaws = getAllByTestId(/W[\w]{1,}p$/)
+            const blackrooks = getAllByTestId(/Br(L|D)$/)
+            const whiterooks = getAllByTestId(/Wr(L|D)$/)
+            const blackknights = getAllByTestId(/Bk(L|D)$/)
+            const whiteknights = getAllByTestId(/Wk(L|D)$/)
+            const blackbishops = getAllByTestId(/Bb(L|D)$/)
+            const whitebishops = getAllByTestId(/Wb(L|D)$/)
+            const blackkings = getAllByTestId(/BK$/)
+            const whitekings = getAllByTestId(/WK$/)
+            const blackqueens = getAllByTestId(/BQ$/)
+            const whitequeens = getAllByTestId(/WQ$/)
+            
+            expect(blackpawns.length).toBe(8)
+            expect(blackpawns[0].props.source.testUri).toMatch(/blackPawn.png/)
+            
+            expect(whitepaws.length).toBe(8)
+            expect(whitepaws[0].props.source.testUri).toMatch(/whitePawn.png/)
+            
+            expect(blackrooks.length).toBe(2)
+            expect(blackrooks[0].props.source.testUri).toMatch(/blackRook.png/)
+            
+            expect(whiterooks.length).toBe(2)
+            expect(whiterooks[0].props.source.testUri).toMatch(/whiteRook.png/)
+            
+            expect(blackknights.length).toBe(2)
+            expect(blackknights[0].props.source.testUri).toMatch(/blackKnight.png/)
+            
+            expect(whiteknights.length).toBe(2)
+            expect(whiteknights[0].props.source.testUri).toMatch(/whiteKnight.png/)
+            
+            expect(blackbishops.length).toBe(2)
+            expect(blackbishops[0].props.source.testUri).toMatch(/blackBishop.png/)
+            
+            expect(whitebishops.length).toBe(2)
+            expect(whitebishops[0].props.source.testUri).toMatch(/whiteBishop.png/)
+            
+            expect(blackkings.length).toBe(1)
+            expect(blackkings[0].props.source.testUri).toMatch(/blackKing.png/)
+            
+            expect(whitekings.length).toBe(1)
+            expect(whitekings[0].props.source.testUri).toMatch(/whiteKing.png/)
+            
+            expect(blackqueens.length).toBe(1)
+            expect(blackqueens[0].props.source.testUri).toMatch(/blackQueen.png/)
+            
+            expect(whitequeens.length).toBe(1)
+            expect(whitequeens[0].props.source.testUri).toMatch(/whiteQueen.png/)
         })
     })
 })

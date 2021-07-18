@@ -43,8 +43,8 @@ it('spaceContainer width should be 1/8 of boardCOntainer', () => {
 })
 it('all tiles rendered', () => {
     const {getAllByText} =render(<ChessableBoard />)
-    const queens = getAllByText('Q')
-    const kings = getAllByText('K')
+    const queens = getAllByText(/(Q)$/)
+    const kings = getAllByText(/(K)$/)
     const paws = getAllByText(/(D|L|Q|K)p/)
     const knights = getAllByText(/k(L|D)$/)
     const bishops = getAllByText(/b(L|D)$/)
