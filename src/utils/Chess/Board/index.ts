@@ -2,10 +2,12 @@ import Tile from '../Tiles';
 import { ITileType } from '../Tiles/types/ITileType';
 import { IChessSubscriptions } from '../types/IChessSubscriptions';
 import { ISelectedTile } from '../types/ISelectedTile';
+import { ISpacePositions } from '../TileAnimation/types/ISpacePositions';
 import { initialBoardState } from './static/initialBoardState';
 import { validPositions } from './static/validPositions';
 import { IBoardState } from './types/IBoardState';
 import {IPositions} from './types/IPositons';
+import { TileAnimation } from '../TileAnimation';
 
 export default class Board {
   static validPositions: IPositions[] = validPositions;
@@ -66,7 +68,6 @@ export default class Board {
     }else{
       this._selectedTile = undefined
     }
-    console.log(position, tileType, this._selectedTile)
     this.triggerSubscriptions('SELECTED_TILE')
   }
 
@@ -99,6 +100,7 @@ export default class Board {
   
   moveTo(position: IPositions){
     if(this._selectedTile){
+      TileAnimation.moveTo(position)
       const oldPosition = this._selectedTile.position;
       this.updateTilePosition(position, oldPosition);
     }
