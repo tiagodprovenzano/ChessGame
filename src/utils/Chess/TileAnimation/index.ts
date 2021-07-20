@@ -1,28 +1,9 @@
 import { IPositions } from "../Board/types/IPositons";
 import { ITileType } from "../Tiles/types/ITileType";
+import { ITileAnimationSubscriptions } from "./types/ITileAnimationSubscriptions";
 import { ISpacePositions } from "./types/ISpacePositions";
-
-type ITileAnimationActions = 'RENDER_ANIMATION' | 'SET_ORIGIN_TILE'
-
-
-type ITileAnimationSubscriptions = Record<ITileAnimationActions, Array<(value: any) => void>>
-
-
-type ITileAnimationConfig = {
-    from: {
-        x: number,
-        y: number,
-        id: IPositions
-    },
-    to: {
-        x: number,
-        y: number,
-        id: IPositions
-    },
-    tileImageSrc: any
-}
-
-
+import { ITileAnimationActions } from "./types/ITileAnimationActions";
+import { ITileAnimationConfig } from "./types/ITileAnimationConfig";
 
 export class TileAnimation {
     private static _positions: ISpacePositions[] = []
