@@ -24,7 +24,7 @@ export const AnimatedTile: React.FC<Props> = props => {
       Animated.timing(translate, {toValue: {x:targetX - targetAnimation?.from.x, y: targety - targetAnimation?.from.y}, useNativeDriver: true, duration: 100}).start(() => {
         setTimeout( () => {
           TileAnimation.reset()
-          Animated.timing(translate, {toValue: {x:0, y:0}, useNativeDriver: true, duration: 0}).start();
+          translate.setValue({x:0, y:0})
         }, 0)
       });
     }
