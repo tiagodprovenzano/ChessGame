@@ -40,7 +40,7 @@ export const TileContainer: React.FC<Props> = props => {
           ? 'W'
           : 'B';
       setImageSrc(getTileImagesSources(newTileType, color));
-      setTileId(`${color}${tileType}`);
+      setTileId(`${color}${newTileType}`);
     } else {
       setDisableSpace(false);
       setTileId(undefined);
@@ -53,7 +53,7 @@ export const TileContainer: React.FC<Props> = props => {
       Chess.setSelectedTile(position, tileType, imageSrc);
     }
   }, [tileType]);
-
+  
   return (
     <TouchableOpacity
       activeOpacity={1}
@@ -62,7 +62,7 @@ export const TileContainer: React.FC<Props> = props => {
       <Text
         testID={'TileLabel'}
         style={{display: 'none', color: '#000' ? '#fff' : '#000'}}>
-        {tileId}
+        {tileType}
       </Text>
       {tileId && (
         <Image
